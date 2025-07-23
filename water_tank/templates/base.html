@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Water Tank Cleaner</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+    <nav>
+        <h1>Water Tank Cleaner</h1>
+        <div class="hamburger" onclick="toggleMenu()">☰</div>
+        <ul id="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/services">Services</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <li><button onclick="showForm()">Apply</button></li>
+        </ul>
+    </nav>
+    </header>
+
+
+    {% block content %}{% endblock %}
+
+    <!-- Apply Form Modal -->
+    <!-- Apply Form Modal -->
+    <div id="applyForm" class="modal">
+        <form method="POST" action="/apply" class="modal-content">
+            <span class="close" onclick="hideForm()">&times;</span>
+            <h2>Apply for Service</h2>
+
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="text" name="phone" placeholder="Phone Number" required>
+            <input type="text" name="address" placeholder="Address" required>
+
+            <textarea name="date and time " placeholder="date and time"></textarea>
+
+        <!-- NEW: Service Type Dropdown -->
+            <select name="service_type" required>
+                <option value="" disabled selected>Select Service Type</option>
+                <option value="Residential Tank Cleaning">Residential Tank Cleaning</option>
+                <option value="Commercial Tank Cleaning">Commercial Tank Cleaning</option>
+                <option value="Underground Tank Cleaning">Underground Tank Cleaning</option>
+                <option value="Emergency Cleaning">Emergency Cleaning</option>
+                <option value="AMC (Annual Maintenance Contract)">AMC (Annual Maintenance Contract)</option>
+            </select>
+
+            <button type="submit">Submit</button>
+        py</form>
+    </div>
+
+
+    <script>
+    function showForm() {
+        document.getElementById('applyForm').style.display = 'block';
+    }
+
+    function hideForm() {
+        document.getElementById('applyForm').style.display = 'none';
+    }
+
+    function toggleMenu() {
+        const nav = document.getElementById('nav-links');
+        nav.classList.toggle('active');
+    }
+</script>
+
+</body>
+</html>
